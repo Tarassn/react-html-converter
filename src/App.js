@@ -9,11 +9,10 @@ class App extends Component {
         markdownInput:"",
     };
 
-    addMarkdown = (str) => {
-        str=marked(str);
-        this.setState({ markdownInput:(str), });
-        console.log(1)
-    };
+    addMarkdown = debounce((str) => {
+        let markedStr=marked(str);
+        this.setState({ markdownInput:(markedStr), });
+    }, 300);
     createMarkup=() => {
         return {__html: this.state.markdownInput};
     };
